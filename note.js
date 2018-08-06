@@ -42,7 +42,14 @@ if(!fs.existsSync(to_create))
 ${new Date().toLocaleDateString()}\n\n`
     );
 
-    require('child_process').spawnSync('code-oss', [to_create]);
+    let out =
+    require('child_process')
+    .spawnSync('code-oss', [to_create])
+    .stderr
+    .toString().trim();
+
+    if(out.length) console.error(out);
+    else           console.info('Done');
 }
 else
 {
