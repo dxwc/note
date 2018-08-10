@@ -15,6 +15,16 @@ require('child_process')
                             ('.newline ' + process.argv[3] + '\\') : '\\'}
         -fmarkdown-implicit_figures \
         --toc \
+        --variable colorlinks=true \
+        --variable linkcolor=red \
+        --variable documentclass=extarticle \
+        --variable urlcolor=red \
+        --variable fontsize=12pt \
+        --variable margin-left=0.7in \
+        --variable margin-right=0.7in \
+        --variable margin-top=0.7in \
+        --variable margin-bottom=0.7in \
+        --variable fontfamily=times \
         -o ${process.argv[2] ?
                 (process.argv[2] + '.pdf') :
                 'generated.pdf'
