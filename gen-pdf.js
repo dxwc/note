@@ -9,17 +9,17 @@ require('child_process')
 (
     `
     echo > .all_mds
-    for f in *--*.md; do (cat "\${f}"; echo) >> .all_mds; done
-    echo -e '\\n' > .newline
+    echo '\n\\newpage\n' > .newline
+    for f in *--*.md; do (cat "\${f}"; cat .newline) >> .all_mds; done
     pandoc ${meta} .newline .all_mds ${process.argv[3] ?
                             ('.newline ' + process.argv[3] + '\\') : '\\'}
-        -fmarkdown-implicit_figures\
-        --template=latex.template\
+        -fmarkdown-implicit_figures \
+        --toc \
         -o ${process.argv[2] ?
                 (process.argv[2] + '.pdf') :
                 'generated.pdf'
         }
-    rm .newline .all_mds
+    rm .all_mds .newline
     `,
     undefined,
     (err, stdout, stderr) =>
