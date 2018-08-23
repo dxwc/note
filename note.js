@@ -44,7 +44,7 @@ ${new Date().toLocaleDateString()}\n\n`
 
     let out =
     require('child_process')
-    .spawnSync('code-oss', [to_create])
+    .spawnSync('xdg-open', [to_create])
     .stderr
     .toString().trim();
 
